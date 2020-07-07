@@ -7,5 +7,5 @@ import (
 
 func Login(group *gin.RouterGroup)  {
 	userApi:=group.Group("user")
-	userApi.GET("login",user.Login)
+	userApi.POST("login",user.Login)
 }

@@ -9,7 +9,6 @@ import (
 )
 
 func (Service) Login(request user.LoginRequest) (token string,errs error)   {
-
 	getOne :=user.DetailRequest{
 		Name: request.Name,
 	}

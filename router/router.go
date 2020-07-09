@@ -7,7 +7,7 @@ import (
 
 func Router(api *gin.RouterGroup)  {
 	Login(api)
-	api.Use(middleware.JWTAuth())
+	api.Use(middleware.JWTAuth()).Use(middleware.CheckAuth())
 	{
 		Permission(api)
 		RoleRouter(api)

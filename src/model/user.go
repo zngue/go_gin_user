@@ -17,7 +17,7 @@ type User struct {
 	Age 		int8 		`json:"age" gorm:"column:age" form:"age"`
 	Status 		int8 		`json:"status" gorm:"column:status;default:1" form:"status"`
 	Sex 		int8 		`json:"sex" gorm:"column:sex" form:"sex"`
-	RoleId  	int 		`json:"role_id" gorm:"column:role_id;" form:"role_id"`
+	RoleId  	int 		`json:"role_id" gorm:"column:role_id" form:"role_id"`
 	Role 		Role		`gorm:"ForeignKey:id;AssociationForeignKey:role_id" json:"role"`
 
 	db.TimeStampModel
@@ -63,7 +63,15 @@ func (u *User) Detail(request user.DetailRequest) ( user  *User, err error)  {
 	if request.Name!="" {
 		dbConn = dbConn.Where("name = ?",request.Name)
 	}
-	fmt.Println("----",request,"8888888")
+	if request.IsRole {
+		dbConn = dbConn.Preload("Role", func( db2 *gorm.DB) *gorm.DB {
+			if  request.IsPermission{
+				return db2.Preload("Permission")
+			}else {
+				return nil
+			}
+		})
+	}
 	err =dbConn.First(&u).Error
 	user = u
 	return

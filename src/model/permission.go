@@ -10,7 +10,7 @@ import (
 
 type Permission struct {
 
-	ID int `json:"id" gorm:"column:id;primary_key" form:"id" ` //id
+	ID         		int    `gorm:"auto_increment" json:"id" form:"id"`
 	Status int8 `json:"status" gorm:"column:status;tinyint(1);comment:'1 正常，2禁用'" form:"status"  ` //状态
 	Name string `json:"name" gorm:"column:name;varchar(50);comment:'权限名称'" form:"name" binding:"required"`//名称
 	Url string `json:"url" gorm:"column:url;varchar(100);comment:'跳转链接'" form:"url"` //跳转地址

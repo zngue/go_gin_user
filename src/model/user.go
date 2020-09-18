@@ -10,7 +10,7 @@ import (
 	"reflect"
 )
 type User struct {
-	ID 		int 		`json:"user_id" gorm:"column:id;primary_key;" sql:"index" form:"id"`
+	ID         		int    `gorm:"auto_increment" json:"id" form:"id"`
 	Name 		string 		`json:"name" gorm:"column:name" form:"name" sql:"index;unique" binding:"required" sql:"index"`
 	Password 	string 		`json:"password" gorm:"column:password" form:"password" `
 	HeaderImg 	string 		`json:"header_img" gorm:"column:header_img" form:"header_img"`

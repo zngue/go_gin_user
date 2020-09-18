@@ -7,7 +7,7 @@ import (
 )
 
 type Role struct {
-	Id int `json:"id" gorm:"column:id;primary_key" form:"id"`
+	ID         		int    `gorm:"auto_increment" json:"id" form:"id"`
 	Name string `json:"name" gorm:"column:name;" form:"name" sql:"index;unique" binding:"required"`
 	Desc string `json:"desc" gorm:"column:desc" form:"desc" sql:"index"`
 	Status int8 `json:"status" gorm:"column:status" form:"status" sql:"index"`
